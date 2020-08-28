@@ -1,26 +1,16 @@
+const path = require('path')
 const express = require('express')
-const { response } = require('express')
 
 const app = express()
 
-// app.com
-// app.com/help
-// app.com/about
-
-app.get('', (req, res) => {
-    res.send('Hello express!')
-})
-
-app.get('/help', (req, res)=> {
-    res.send('Help page')
-})
-
-app.get('/about', (req, res)=> {
-    res.send('about page')
-})
+// Using a static page for the site
+app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/weather', (req, res)=> {
-    res.send('Weather page')
+    res.send({
+        forecast: 'clear',
+        location: 'Ankeny'
+    })
 })
 
 app.listen(3000, () => {
