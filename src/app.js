@@ -4,9 +4,14 @@ const express = require('express')
 
 const app = express()
 
-app.set('view engine', 'hbs')
+// Define paths for express config
+const viewsPath = path.join(__dirname, '../templates')
 
-// Using a static page for the site
+// Setup handlebars engine and views location
+app.set('view engine', 'hbs')
+app.set('views', viewsPath)
+
+// Setup a static directory to serve
 app.use(express.static(path.join(__dirname, '../public')))
 
 
